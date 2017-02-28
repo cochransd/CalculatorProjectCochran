@@ -6,11 +6,15 @@ import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
+import java.nio.FloatBuffer;
+
 public class MainActivity extends AppCompatActivity {
 
     public TextView textView;
     private String count = "";
     private String fullCount = "";
+    private String op = "";
+
 
 
     @Override
@@ -214,16 +218,22 @@ public class MainActivity extends AppCompatActivity {
 
     public void cPer(View v){
 
-        count = count + 1;
-        textView.setText(count.toString());
+        float i1 = Integer.parseInt(count);
+        Float rtnval;
+
+        rtnval = i1 / 100;
+
+        textView.setText(rtnval.toString());
 
         Log.d("textView", textView.toString());
 
     }
 
     public void cDivide(View v){
+        fullCount = count;
+        count = "0";
+        op = "/";
 
-        count = count + 1;
         textView.setText(count.toString());
 
         Log.d("textView", textView.toString());
@@ -231,8 +241,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void cMult(View v){
+        fullCount = count;
+        count = "0";
+        op = "x";
 
-        count = count + 1;
         textView.setText(count.toString());
 
         Log.d("textView", textView.toString());
@@ -243,6 +255,7 @@ public class MainActivity extends AppCompatActivity {
 
         fullCount = count;
         count = "0";
+        op = "-";
 
         textView.setText(count.toString());
 
@@ -254,6 +267,7 @@ public class MainActivity extends AppCompatActivity {
     public void cAdd(View v){
         fullCount = count;
         count = "0";
+        op = "+";
 
         textView.setText(count.toString());
 
@@ -263,11 +277,50 @@ public class MainActivity extends AppCompatActivity {
 
     public void cEquals(View v){
 
-        int i1 = Integer.parseInt(fullCount);
-        int i2 = Integer.parseInt(count);
-        Integer rtnval;
+        Double rtnval = 0.0;
 
-        rtnval = i1 + i2;
+        if ( op == "+" ){
+
+            Double i1 = Double.parseDouble(fullCount);
+            Double i2 = Double.parseDouble(count);
+
+            rtnval = i1 + i2;
+            count = rtnval.toString();
+            fullCount = "0";
+        }
+
+
+        if ( op == "-" ){
+
+            Double i1 = Double.parseDouble(fullCount);
+            Double i2 = Double.parseDouble(count);
+
+            rtnval = i1 - i2;
+            count = rtnval.toString();
+            fullCount = "0";
+        }
+
+
+        if ( op == "x" ){
+
+            Double i1 = Double.parseDouble(fullCount);
+            Double i2 = Double.parseDouble(count);
+
+            rtnval = i1 * i2;
+            count = rtnval.toString();
+            fullCount = "0";
+        }
+
+
+        if ( op == "/" ){
+
+            Double i1 = Double.parseDouble(fullCount);
+            Double i2 = Double.parseDouble(count);
+
+            rtnval = i1 / i2;
+            count = rtnval.toString();
+            fullCount = "0";
+        }
 
         textView.setText(rtnval.toString());
 
@@ -277,10 +330,17 @@ public class MainActivity extends AppCompatActivity {
 
     public void cDec(View v){
 
-        count = count + 1;
-        textView.setText(count.toString());
+        int size = count.length();
 
-        Log.d("textView", textView.toString());
+        if (count.substring(size) != "."){
+
+            count = count + ".";
+
+        } else {
+
+        }
+
+        textView.setText(count.toString());
 
     }
 }
