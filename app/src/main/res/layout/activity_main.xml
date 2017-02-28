@@ -15,7 +15,8 @@
         android:layout_width="355dp"
         android:layout_height="wrap_content"
         android:id="@+id/textView5"
-        android:layout_weight="0.04" />
+        android:layout_weight="0.04"
+        android:textSize="36sp" />
 
     <RelativeLayout
         android:layout_width="match_parent"
