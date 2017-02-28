@@ -209,9 +209,17 @@ public class MainActivity extends AppCompatActivity {
 
     public void cNeg(View v){
 
-        count = "-" + count;
-        textView.setText(count.toString());
+        if (count.charAt(0) != '-'){
 
+            count = '-' + count;
+
+        } else {
+
+            count = count.substring(1);
+
+        }
+
+        textView.setText(count);
         Log.d("textView", textView.toString());
 
     }
@@ -331,12 +339,14 @@ public class MainActivity extends AppCompatActivity {
     public void cDec(View v){
 
         int size = count.length();
+        Double number = Double.parseDouble(count);
 
-        if (count.substring(size) != "."){
+        if ( (number % 1 == 0) && count.charAt(size-1) != '.'){
 
             count = count + ".";
 
         } else {
+
 
         }
 
