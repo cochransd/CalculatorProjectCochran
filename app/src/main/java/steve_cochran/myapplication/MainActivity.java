@@ -239,7 +239,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void cDivide(View v){
         fullCount = count;
-        count = "0";
+        count = "";
         op = "/";
 
         textView.setText(count.toString());
@@ -250,7 +250,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void cMult(View v){
         fullCount = count;
-        count = "0";
+        count = "";
         op = "x";
 
         textView.setText(count.toString());
@@ -262,7 +262,7 @@ public class MainActivity extends AppCompatActivity {
     public void cSub(View v){
 
         fullCount = count;
-        count = "0";
+        count = "";
         op = "-";
 
         textView.setText(count.toString());
@@ -274,7 +274,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void cAdd(View v){
         fullCount = count;
-        count = "0";
+        count = "";
         op = "+";
 
         textView.setText(count.toString());
@@ -353,4 +353,28 @@ public class MainActivity extends AppCompatActivity {
         textView.setText(count.toString());
 
     }
+
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putString("countSave",count);
+        outState.putString("fullCountSave",fullCount);
+        outState.putString("opSave",op);
+
+
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onSaveInstanceState(savedInstanceState);
+        count = savedInstanceState.getString("countSave");
+        fullCount = savedInstanceState.getString("fullCountSave");
+        op = savedInstanceState.getString("opSave");
+
+        textView.setText(count.toString());
+
+    }
+
+
 }
